@@ -1,0 +1,27 @@
+def resizeSVG(path, factor):
+    '''
+    IN: 
+        path: the svg path with spaces as separators (important)
+        factor: the resizing factor
+    OUT:
+        converted: the svg path resized
+    '''
+    separator = " "
+    splitPath = path.split(separator)
+    converted = ""
+    for element in splitPath:
+        number = False
+        try:
+            int(element)
+            number = True
+        except ValueError:
+            pass
+        if number:
+            newElement = int(element) * factor
+            newElement = int(newElement * 1000) / 1000
+            if int(newElement) == newElement:
+                newElement = int(newElement)
+        else:
+            newElement = element
+        converted += str(newElement) + separator
+    return converted
